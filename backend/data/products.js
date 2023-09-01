@@ -1,7 +1,7 @@
 //  (local data for testing) 
 const products = [
     {
-        _id: '1',
+
         name:'AirPodsAirPodsAirPodsAirPodsAirPodsAirPods ',
         image:"img",
         description:'bluetooth.....',
@@ -13,7 +13,7 @@ const products = [
         numReviews:12
     },
     {
-        _id: '2',
+       
         name:'AirPods',
         image:"img",
         description:'bluetooth.....',
@@ -25,7 +25,7 @@ const products = [
         numReviews:12
     },
     {
-        _id: '3',
+      
         name:'AirPods',
         image:'./assets/logo.png',
         description:'bluetooth.....',
@@ -37,7 +37,7 @@ const products = [
         numReviews:12
     },
     {
-        _id: '4',
+       
         name:'AirPods',
         image:'./assets/logo.png',
         description:'bluetooth.....',
