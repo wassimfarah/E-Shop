@@ -1,25 +1,26 @@
-import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from 'react-bootstrap'
 import Rating from '../components/Rating';
-import axios from 'axios'
+import { useGetProductsQuery } from '../slices/productApiSlice';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 
 const ProductScreen = () => {
-    const [product, setProducts] = useState({});
 
     const {id:  productId} = useParams();
 
-    useEffect( () => {
-        const fetchProduct = async () => {
-            const {data} = await  axios.get(`/api/products/${productId}`);
-            setProducts(data)
-        }
-        fetchProduct()
-    },[productId])
+    const {data: product, isLoading, error} = useGetProductsQuery(productId);
   return (
     <>
-        <Link className='btn btn-light my-3' to="/">Go Back</Link>
-        <Row>
+        <Link className='btn btn-light my-3' to="/">
+            Go Back
+        </Link>
+        { 
+            isLoading ? (
+                <h2> <Loader/> </h2>
+            ): error ? (
+                <Message variant='danger'>{error?.data.message || error.error}</Message>
+            ) : (<Row>
             <Col md={5}>
                 <Image src={product.image} alt={product.name} fluid />
             </Col>
@@ -76,7 +77,9 @@ const ProductScreen = () => {
                     </ListGroup>
                 </Card>
             </Col>
-        </Row>
+        </Row>) }
+
+        
     </>
   )
 }
